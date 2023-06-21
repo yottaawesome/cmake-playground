@@ -1,3 +1,6 @@
+# See https://gitlab.kitware.com/cmake/community/-/wikis/doc/tutorials/BuildingWinDLL
+# See https://cmake.org/cmake/help/latest/module/GenerateExportHeader.html
+# See https://computingonplains.wordpress.com/building-c-applications-with-cmake-and-visual-studio-code/
 cmake_minimum_required(VERSION 3.20)
 
 project(ProjectName) # becomes the SLN name
@@ -13,3 +16,5 @@ GENERATE_EXPORT_HEADER(
     EXPORT_MACRO_NAME MyLibrary_EXPORT
     EXPORT_FILE_NAME MyLibrary_Export.h
 )
+
+target_compile_features(MyLibrary PUBLIC cxx_std_20)
