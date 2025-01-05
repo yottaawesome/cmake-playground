@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Demonstrates using CMake with MSVC, C++ named modules and C++23 standard modules. As of the time of this writing, you'll need CMake 3.30 to do this, so you'll need to install it (Visual Studio's CMake is 3.29).
+Demonstrates using CMake with MSVC, C++ named modules and C++23 standard modules. As of the time of this writing, you'll need at least CMake 3.30 to do this, so you'll need to install it (Visual Studio's CMake is 3.29).
 
 ## Additional resources
 
