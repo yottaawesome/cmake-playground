@@ -4,4 +4,5 @@ import std;
 
 int main() {
     printMessage();
+    return 0;
 }
