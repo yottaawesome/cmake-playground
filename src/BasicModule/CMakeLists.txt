@@ -7,22 +7,26 @@
 #
 # NOTE THE USE OF "cmakeExecutable": "A:\\Program Files\\CMake\\bin\\cmake.exe" in CMakePresets.json
 #
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 4.0.3) # 4.0.2 is broken
 
-set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "0e5b6991-d74f-4b3d-a41c-cf096e0b2508") 
-project(modules-example LANGUAGES CXX)
-
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "d0edc3af-4c50-42ea-a356-e2862fe7a444")
+set(CMAKE_CXX_MODULE_STD ON)
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_MODULE_STD 1)
+project(BasicModule)
 
-add_executable(demo)
-target_sources(demo
-    PUBLIC
-    main.cpp
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS ON)
+
+# Collect all .ixx submodules from submodules/
+file(GLOB SUBMODULE_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/submodules/*.ixx")
+
+add_executable(BasicModule)
+target_sources(BasicModule
+        PRIVATE
+        main.cpp
+        PUBLIC
+        FILE_SET cxx_modules TYPE CXX_MODULES FILES
+        testmodule.ixx 
+        a.cppm
+        ${SUBMODULE_SOURCES}
 )
-target_sources(demo
-  PUBLIC
-    FILE_SET all_my_modules TYPE CXX_MODULES FILES
-    a.cppm
-)
-target_compile_features(demo PRIVATE cxx_std_23) 
